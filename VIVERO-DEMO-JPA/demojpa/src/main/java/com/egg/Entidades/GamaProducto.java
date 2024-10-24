@@ -18,10 +18,10 @@ public class GamaProducto {
 
     @Column(name = "descripcion_html", length = 255)
     private String descripcionHtml;
-    
+
     @Column(name = "descripcion_texto", length = 255)
     private String descripcionTexto;
-    
+
     @Column(name = "gama", length = 255)
     private String gama;
 
@@ -71,6 +71,10 @@ public class GamaProducto {
         this.imagen = imagen;
     }
 
-    
+    @Override
+    public String toString() {
+        return "GamaProducto [idGama=" + idGama + ", descripcionHtml=" + descripcionHtml + ", descripcionTexto="
+                + descripcionTexto + ", gama=" + gama + ", imagen=" + imagen + "]";
+    }
 
 }

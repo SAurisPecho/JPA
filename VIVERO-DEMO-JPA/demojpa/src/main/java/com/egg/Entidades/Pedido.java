@@ -113,4 +113,11 @@ public class Pedido {
         this.cliente = cliente;
     }
 
+    @Override
+    public String toString() {
+        return "Pedido [idPedido=" + idPedido + ", codigoPedido=" + codigoPedido + ", comentarios=" + comentarios
+                + ", estado=" + estado + ", fechaEntrega=" + fechaEntrega + ", fechaEsperada=" + fechaEsperada
+                + ", fechaPedido=" + fechaPedido + ", cliente=" + cliente + "]";
+    }
+
 }

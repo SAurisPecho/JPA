@@ -39,7 +39,7 @@ public class Producto {
     @Column(name = "precio_venta")
     private double precioVenta;
 
-    @Column(name= "proveedor", length = 255)
+    @Column(name = "proveedor", length = 255)
     private String proveedor;
 
     @ManyToOne
@@ -129,5 +129,11 @@ public class Producto {
         this.gamaProducto = gamaProducto;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Producto [idProducto=" + idProducto + ", cantidadStock=" + cantidadStock + ", codigoProducto="
+                + codigoProducto + ", descripcion=" + descripcion + ", dimensiones=" + dimensiones + ", nombreProducto="
+                + nombreProducto + ", precioProveedor=" + precioProveedor + ", precioVenta=" + precioVenta
+                + ", proveedor=" + proveedor + ", gamaProducto=" + gamaProducto + "]";
+    }
 }

@@ -32,13 +32,13 @@ public class Empleado {
     @ManyToOne
     @JoinColumn(name = "id_jefe")
     private Empleado idJefe;
-    
+
     @Column(name = "nombre", length = 255)
     private String nombre;
 
-    @Column(name= "puesto", length = 255)
+    @Column(name = "puesto", length = 255)
     private String puesto;
-    
+
     @ManyToOne
     @JoinColumn(name = "id_oficina")
     private Oficina oficina;
@@ -89,8 +89,8 @@ public class Empleado {
     public Empleado getIdJefe() {
         return idJefe;
     }
-    
-    public void setIdJefe(Empleado idJefe) { 
+
+    public void setIdJefe(Empleado idJefe) {
         this.idJefe = idJefe;
     }
 
@@ -118,5 +118,11 @@ public class Empleado {
         this.oficina = oficina;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Empleado [idEmpleado=" + idEmpleado + ", apellido=" + apellido + ", codigoEmpleado=" + codigoEmpleado
+                + ", email=" + email + ", extension=" + extension + ", idJefe=" + idJefe + ", nombre=" + nombre
+                + ", puesto=" + puesto + ", oficina=" + oficina + "]";
+    }
+
 }

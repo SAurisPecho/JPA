@@ -12,12 +12,12 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "detalle_pedido")
 public class DetallePedido {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_detalle_pedido")
     private int idDetallePedido;
-    
+
     @Column(name = "cantidad")
     private int cantidad;
 
@@ -85,5 +85,12 @@ public class DetallePedido {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
-    
+
+    @Override
+    public String toString() {
+        return "DetallePedido [idDetallePedido=" + idDetallePedido + ", cantidad=" + cantidad + ", numero_linea="
+                + numero_linea + ", precioUnidad=" + precioUnidad + ", producto=" + producto + ", pedido=" + pedido
+                + "]";
+    }
+
 }

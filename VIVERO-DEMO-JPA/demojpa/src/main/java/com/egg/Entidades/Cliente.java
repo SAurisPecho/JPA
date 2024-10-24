@@ -46,10 +46,10 @@ public class Cliente {
 
     @Column(name = "region", length = 255)
     private String region;
-    
+
     @Column(name = "telefono", length = 255)
     private String telefono;
-    
+
     @ManyToOne
     @JoinColumn(name = "id_empleado")
     private Empleado idEmpleado;
@@ -161,5 +161,13 @@ public class Cliente {
         this.idEmpleado = idEmpleado;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente [idCliente=" + idCliente + ", apellidoContacto=" + apellidoContacto + ", ciudad=" + ciudad
+                + ", codigoCliente=" + codigoCliente + ", codigoPostal=" + codigoPostal + ", fax=" + fax
+                + ", limiteCredito=" + limiteCredito + ", nombreCliente=" + nombreCliente + ", nombreContacto="
+                + nombreContacto + ", pais=" + pais + ", region=" + region + ", telefono=" + telefono + ", idEmpleado="
+                + idEmpleado + "]";
+    }
 
 }

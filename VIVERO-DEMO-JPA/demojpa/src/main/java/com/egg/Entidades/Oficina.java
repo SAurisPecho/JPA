@@ -24,13 +24,13 @@ public class Oficina {
 
     @Column(name = "codigo_oficina", length = 10)
     private String codigoOficina;
-    
+
     @Column(name = "pais", length = 50)
     private String pais;
 
     @Column(name = "region", length = 50)
     private String region;
-    
+
     @Column(name = "telefono", length = 20)
     private String telefono;
 
@@ -93,5 +93,11 @@ public class Oficina {
         this.telefono = telefono;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Oficina [idOficina=" + idOficina + ", ciudad=" + ciudad + ", codigoPostal=" + codigoPostal
+                + ", codigoOficina=" + codigoOficina + ", pais=" + pais + ", region=" + region + ", telefono="
+                + telefono + "]";
+    }
+
 }

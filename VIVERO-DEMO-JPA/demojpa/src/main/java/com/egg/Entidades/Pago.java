@@ -1,4 +1,5 @@
 package com.egg.Entidades;
+
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -23,7 +24,7 @@ public class Pago {
     @Column(name = "fecha_pago")
     @Temporal(TemporalType.DATE)
     private Date fechaPago;
-    
+
     @Column(name = "forma_pago", length = 255)
     private String formaPago;
 
@@ -86,6 +87,12 @@ public class Pago {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    @Override
+    public String toString() {
+        return "Pago [idPago=" + idPago + ", fechaPago=" + fechaPago + ", formaPago=" + formaPago + ", idTransaccion="
+                + idTransaccion + ", total=" + total + ", cliente=" + cliente + "]";
     }
 
 }
