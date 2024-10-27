@@ -1,5 +1,7 @@
 package com.egg.Persistence;
 
+import java.util.List;
+
 import com.egg.Entidades.Cliente;
 
 import jakarta.persistence.EntityManager;
@@ -33,5 +35,27 @@ public class ClienteDAO {
             em.remove(cliente);
             em.getTransaction().commit();
         }
+    }
+
+    public List<Cliente> listarClientes() throws Exception {
+        return em.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
+    }
+
+    public List<Cliente> listarClientesPorNombre(String nombreABuscar) throws Exception {
+        return em.createQuery("SELECT c FROM Cliente c WHERE c.nombreContacto LIKE :nombre", Cliente.class)
+                .setParameter("nombre", "%" + nombreABuscar + "%")
+                .getResultList();
+    }
+
+    public List<Cliente> listarClientesCiudad (String ciudad) throws Exception {
+        return em.createQuery("SELECT c FROM Cliente c WHERE c.ciudad = :ciudad",Cliente.class)
+                .setParameter("ciudad",ciudad)
+                .getResultList();
+    }
+
+    public List<Cliente> listarClientesPorEmpleado(String nombreEmpleado) {
+        return em.createQuery("SELECT c FROM Cliente c WHERE c.idEmpleado.nombre = :nombreEmpleado", Cliente.class)
+                .setParameter("nombreEmpleado", nombreEmpleado)
+                .getResultList();
     }
 }

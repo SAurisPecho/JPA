@@ -1,5 +1,7 @@
 package com.egg.Persistence;
 
+import java.util.List;
+import java.util.Date;
 import com.egg.Entidades.Pedido;
 
 import jakarta.persistence.EntityManager;
@@ -33,5 +35,18 @@ public class PedidoDAO {
             em.remove(pedido);
             em.getTransaction().commit();
         }
+    }
+
+    public List<Pedido> listarPedidosFechaEntregaRetrasados() throws Exception {
+        return em.createQuery("SELECT p FROM Pedido p WHERE p.fechaEntrega > p.fechaEsperada ", Pedido.class)
+                .getResultList();
+    }
+
+    public List<Pedido> listarPedidosClienteEntreFechas (String nombreCliente, Date fechaInicio, Date fechaFin) throws Exception {
+        return em.createQuery("SELECT p FROM Pedido p WHERE p.cliente.nombreCliente = :nombre AND p.fechaPedido BETWEEN :fechaInicial AND :fechaFinal", Pedido.class)
+                .setParameter("nombre", nombreCliente)
+                .setParameter("fechaInicial", fechaInicio)
+                .setParameter("fechaFinal", fechaFin)
+                .getResultList();
     }
 }

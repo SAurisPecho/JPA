@@ -1,5 +1,7 @@
 package com.egg.Persistence;
 
+import java.util.List;
+
 import com.egg.Entidades.Producto;
 
 import jakarta.persistence.EntityManager;
@@ -33,5 +35,21 @@ public class ProductoDAO {
             em.remove(producto);
             em.getTransaction().commit();
         }
+    }
+
+    public List<Producto> listaProductos() throws Exception{
+        return em.createQuery("SELECT p FROM Producto p", Producto.class).getResultList();
+    }
+
+    public List<Producto> listarProductosPorDetalle(String nombreProducto) throws Exception {
+        return em.createQuery("SELECT DISTINCT p FROM Producto p WHERE LOWER(p.nombreProducto) LIKE LOWER(:nombreProducto)",Producto.class)
+                .setParameter("nombreProducto", "%"+nombreProducto+"%")
+                .getResultList();
+    }
+
+    public List<Object[]> listar10ProductosMasVendidosEnPedidos() throws Exception {
+        return em.createQuery("SELECT p.nombreProducto, SUM(dp.cantidad) as totalVendido FROM DetallePedido dp JOIN dp.producto p GROUP BY p.nombreProducto ORDER BY totalVendido DESC", Object[].class)
+                .setMaxResults(10)
+                .getResultList();
     }
 }

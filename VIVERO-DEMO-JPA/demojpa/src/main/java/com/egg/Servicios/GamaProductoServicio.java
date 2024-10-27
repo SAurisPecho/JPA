@@ -1,5 +1,7 @@
 package com.egg.Servicios;
 
+import java.util.List;
+
 import com.egg.Entidades.GamaProducto;
 import com.egg.Persistence.GamaProductoDAO;
 
@@ -56,6 +58,17 @@ public class GamaProductoServicio {
             daoGamaProducto.eliminarGamaProducto(idGamaProducto);
         } catch (Exception e) {
             System.out.println(e.toString() + "No se pudo eliminar la gama de producto de manera correcta");
+        }
+    }
+
+    public void listaGamaProductos() throws Exception {
+        List<GamaProducto> listaGamaProductos = daoGamaProducto.listaGamaProductos();
+        imprimirLista(listaGamaProductos);
+    }
+
+    public void imprimirLista(List<GamaProducto> listaGamaProductos) {
+        for (GamaProducto gamaProducto : listaGamaProductos) {
+            System.out.println(gamaProducto.getIdGama()+" - "+gamaProducto.getGama()+" - "+gamaProducto.getDescripcionHtml());
         }
     }
 }

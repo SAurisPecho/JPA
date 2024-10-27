@@ -1,5 +1,7 @@
 package com.egg.Servicios;
 
+import java.util.List;
+
 import com.egg.Entidades.Cliente;
 import com.egg.Persistence.ClienteDAO;
 
@@ -66,5 +68,33 @@ public class ClienteServicio {
         } catch (Exception e) {
             System.out.println(e.toString() + " No se pudo remover el cliente.");
         }
+    }
+
+    public void listarClientes() throws Exception {
+        List<Cliente> todosClientes = daoCliente.listarClientes();
+        imprimirLista(todosClientes);
+    }
+
+    public void listarClientes(String nombreRecibido) throws Exception {
+        List<Cliente> clientesNombre = daoCliente.listarClientesPorNombre(nombreRecibido);
+        imprimirLista(clientesNombre);
+    }
+
+    public void imprimirLista(List<Cliente> listaRecibida) {
+        for (Cliente cliente : listaRecibida) {
+            System.out.println(cliente.getIdCliente()+" - "+cliente.getNombreCliente()+" - "+cliente.getPais()+" - "+cliente.getCiudad());
+        }
+    }
+
+    public void listarClientesCiudad(String ciudad) throws Exception {
+        List<Cliente> clientesCiudad = daoCliente.listarClientesCiudad(ciudad);
+        System.out.println("Clientes de la ciudad " + ciudad + ":");
+        imprimirLista(clientesCiudad);
+    }
+
+    public void listarClientesPorEmpleado (String nombreEmpleado) throws Exception {
+        List<Cliente> clientes = daoCliente.listarClientesPorEmpleado(nombreEmpleado);
+        System.out.println("Clientes del empleado " + nombreEmpleado + ":");
+        imprimirLista(clientes);
     }
 }

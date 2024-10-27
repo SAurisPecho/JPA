@@ -1,5 +1,7 @@
 package com.egg.Servicios;
 
+import java.util.List;
+
 import com.egg.Entidades.Oficina;
 import com.egg.Persistence.OficinaDAO;
 
@@ -60,6 +62,17 @@ public class OficinaServicio {
             daoOficina.eliminarOficina(id);
         }catch(Exception e){
             System.out.println(e.toString() + "No se pudo eliminar la oficina de manera correcta");
+        }
+    }
+
+    public void listarOficinas() throws Exception {
+        List<Oficina> todasOficinas = daoOficina.listarTodas();
+        imprimirLista(todasOficinas);
+    }
+
+    public void imprimirLista(List<Oficina> listaRecibida) {
+        for (Oficina oficina : listaRecibida) {
+            System.out.println(oficina.getCodigoOficina() + " - "+oficina.getCiudad() + " - " + oficina.getPais());
         }
     }
 }

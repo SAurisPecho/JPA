@@ -1,5 +1,8 @@
 package com.egg.Persistence;
 
+import java.util.Date;
+import java.util.List;
+
 import com.egg.Entidades.Pago;
 
 import jakarta.persistence.EntityManager;
@@ -33,5 +36,12 @@ public class PagoDAO {
             em.remove(pago);
             em.getTransaction().commit();
         }
+    }
+
+    public List<Pago> listarPagosEntreFechas(Date fechaInicio, Date fechaFin) {
+        return em.createQuery("SELECT p FROM Pago p WHERE p.fechaPago BETWEEN :fechaInicio AND :fechaFin", Pago.class)
+                .setParameter("fechaInicio", fechaInicio)
+                .setParameter("fechaFin", fechaFin)
+                .getResultList();
     }
 }

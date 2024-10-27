@@ -1,5 +1,7 @@
 package com.egg.Persistence;
 
+import java.util.List;
+
 import com.egg.Entidades.GamaProducto;
 
 import jakarta.persistence.EntityManager;
@@ -33,5 +35,9 @@ public class GamaProductoDAO {
             em.remove(gamaProducto);
             em.getTransaction().commit();
         }
+    }
+
+    public List<GamaProducto> listaGamaProductos() throws Exception {
+        return em.createQuery("SELECT g FROM GamaProducto g", GamaProducto.class).getResultList();
     }
 }

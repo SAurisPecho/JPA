@@ -1,5 +1,7 @@
 package com.egg.Servicios;
 
+import java.util.List;
+
 import com.egg.Entidades.Empleado;
 import com.egg.Entidades.Oficina;
 import com.egg.Persistence.EmpleadoDAO;
@@ -62,5 +64,34 @@ public class EmpleadoServicio {
         } catch (Exception e) {
             System.out.println(e.toString() + " No se pudo remover el empleado.");
         }
+    }
+
+    public void listaEmpleados() throws Exception {
+        List<Empleado> listaEmpleados = daoEmpleado.listarEmpleados();
+        imprimirLista(listaEmpleados);
+    }
+
+    public void imprimirLista(List<Empleado> listaEmpleados) {
+        for (Empleado empleado : listaEmpleados) {
+            System.out.println(empleado.getIdEmpleado()+" - "+empleado.getNombre()+" - "+empleado.getEmail());
+        }
+    }
+
+    public void listaEmpleadosPorOficinaId (int idOficina) throws Exception {
+        List<Empleado> listaEmpleados = daoEmpleado.listarEmpleadosPorIdOficina(idOficina);
+        System.out.println("Empleados de la oficina con ID " + idOficina + ":");
+        imprimirLista(listaEmpleados);
+    }
+
+    public void listarEmpleadosPorCodigoOficina (String codigo) throws Exception {
+        List<Empleado> listaEmpleados = daoEmpleado.listarEmpleadosPorCodigoOficina(codigo);
+        System.out.println("Empleados de la oficina con codigo " + codigo + ":");
+        imprimirLista(listaEmpleados);
+    }
+
+    public void listarEmpleadosJefes() throws Exception {
+        List<Empleado> listaEmpleados = daoEmpleado.listarEmpleadosJefes();
+        System.out.println("Empleados Jefes de la oficina: ");
+        imprimirLista(listaEmpleados);
     }
 }

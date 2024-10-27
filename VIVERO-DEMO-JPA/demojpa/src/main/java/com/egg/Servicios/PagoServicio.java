@@ -1,6 +1,7 @@
 package com.egg.Servicios;
 
 import java.util.Date;
+import java.util.List;
 
 import com.egg.Entidades.Cliente;
 import com.egg.Entidades.Pago;
@@ -15,7 +16,6 @@ public class PagoServicio {
 
     public void crearPago( Date fechaPago, String formaPago, String idTransaction, double total, Cliente cliente) {
         try {
-            // Crear una nueva instancia de Oficina
             Pago pagoNuevo = new Pago();
 
             pagoNuevo.setFechaPago(fechaPago);
@@ -24,7 +24,6 @@ public class PagoServicio {
             pagoNuevo.setTotal(total);
             pagoNuevo.setCliente(cliente);
             
-            // Llamar al método de OficinaDAO para guardar la nueva oficina
             daoPago.guardarPago(pagoNuevo);
         } catch (Exception e) {
             System.out.println(e.toString() + "No se guardo el nuevo pago de manera correcta");
@@ -62,6 +61,14 @@ public class PagoServicio {
             daoPago.eliminarPago(id);
         }catch(Exception e){
             System.out.println(e.toString() + "No se pudo eliminar el pago de manera correcta");
+        }
+    }
+
+    public void listarPagosEntreFechas (Date fechaInicio, Date fechaFin) throws Exception {
+        List<Pago> pagos = daoPago.listarPagosEntreFechas(fechaInicio, fechaFin);
+        System.out.println("Pagos realizados entre " + fechaInicio + " y " + fechaFin + ":");
+        for (Pago pago : pagos) {
+            System.out.println("ID Transacción: " + pago.getIdTransaccion() + " - Fecha: " + pago.getFechaPago() + ", Cantidad: " + pago.getTotal());
         }
     }
 }

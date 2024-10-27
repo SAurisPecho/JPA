@@ -1,5 +1,7 @@
 package com.egg.Persistence;
 
+import java.util.List;
+
 import com.egg.Entidades.Empleado;
 
 import jakarta.persistence.EntityManager;
@@ -33,5 +35,26 @@ public class EmpleadoDAO {
             em.remove(empleado);
             em.getTransaction().commit();
         }
+    }
+
+    public List<Empleado> listarEmpleados() throws Exception {
+        return em.createQuery("SELECT e FROM Empleado e", Empleado.class).getResultList();
+    }
+
+    public List<Empleado> listarEmpleadosPorIdOficina (int idOficina) throws Exception {
+        return em.createQuery("SELECT e FROM Empleado e WHERE e.oficina.idOficina = :idOficina", Empleado.class)
+                .setParameter("idOficina",idOficina)
+                .getResultList();
+    }
+
+    public List<Empleado> listarEmpleadosPorCodigoOficina(String codigo) throws Exception {
+        return em.createQuery("SELECT e FROM Empleado e WHERE e.oficina.codigoOficina = :codigo", Empleado.class)
+                .setParameter("codigo", codigo)
+                .getResultList();
+    }
+
+    public List<Empleado> listarEmpleadosJefes() throws Exception {
+        return em.createQuery("SELECT DISTINCT e FROM Empleado e WHERE EXISTS (SELECT 1 FROM Empleado sub WHERE sub.idJefe = e)", Empleado.class)
+                .getResultList();
     }
 }
