@@ -79,7 +79,7 @@ public class Menu {
         System.out.println("--- LIBRO ---");
         System.out.println("Ingrese el titulo del libro: ");
         String titulo = sc.nextLine();
-        Libro libro = ls.buscarLibroTitulo(titulo);
+        List<Libro> libro = ls.buscarLibroTitulo(titulo);
         if (libro != null) {
             System.out.println(libro.toString());
         }
@@ -99,7 +99,7 @@ public class Menu {
         System.out.println("--- AUTOR ---");
         System.out.println("Ingrese el nombre del autor: ");
         String nombre = sc.nextLine();
-        Autor autor = as.buscarAutorNombre(nombre);
+        List<Autor> autor = as.buscarAutorNombre(nombre);
         if (autor != null) {
             System.out.println(autor.toString());
         }

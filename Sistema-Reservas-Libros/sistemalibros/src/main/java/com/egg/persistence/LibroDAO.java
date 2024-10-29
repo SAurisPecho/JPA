@@ -44,10 +44,10 @@ public class LibroDAO {
         return libro;
     }
 
-    public Libro buscarLibroPorNombre (String nombre) {
+    public List<Libro> buscarLibroPorNombre (String nombre) {
         EntityManager em = emf.createEntityManager();
-        Libro libro = em.find(Libro.class, nombre);
-        return libro;
+        return em.createQuery("SELECT l FROM Libro l WHERE l.titulo = :nombre", Libro.class)
+                .setParameter("nombre", nombre).getResultList();
     }
 
     public void eliminarLibro (long isbn) {

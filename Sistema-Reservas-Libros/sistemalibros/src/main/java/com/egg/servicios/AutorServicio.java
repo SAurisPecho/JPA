@@ -1,5 +1,7 @@
 package com.egg.servicios;
 
+import java.util.List;
+
 import com.egg.entidades.Autor;
 import com.egg.persistence.AutorDAO;
 
@@ -49,8 +51,8 @@ public class AutorServicio {
         return null;
     }
 
-    public Autor buscarAutorNombre (String nombre) {
-        Autor autor = autorDAO.buscarAutorPorNombre(nombre);
+    public List<Autor> buscarAutorNombre (String nombre) {
+        List<Autor> autor = autorDAO.buscarAutorPorNombre(nombre);
         try {
             if(autor == null) {
                 System.out.println("No existe ningun autor con el nombre: "+nombre);

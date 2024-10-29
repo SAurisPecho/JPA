@@ -58,8 +58,8 @@ public class LibroServicio {
         return null;
     }
 
-    public Libro buscarLibroTitulo (String titulo) {
-        Libro libro = libroDAO.buscarLibroPorNombre(titulo);
+    public List<Libro> buscarLibroTitulo (String titulo) {
+        List<Libro> libro = libroDAO.buscarLibroPorNombre(titulo);
         try {
             if (libro == null) {
                 System.out.println("No existe ningun Libro con el titulo: "+titulo);

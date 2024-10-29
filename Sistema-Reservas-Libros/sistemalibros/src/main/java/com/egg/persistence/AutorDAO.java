@@ -1,5 +1,7 @@
 package com.egg.persistence;
 
+import java.util.List;
+
 import com.egg.entidades.Autor;
 
 import jakarta.persistence.EntityManager;
@@ -29,10 +31,11 @@ public class AutorDAO {
         return autor;
     }
 
-    public Autor buscarAutorPorNombre(String nombre) {
+    public List<Autor> buscarAutorPorNombre(String nombre) {
         EntityManager em = emf.createEntityManager();
-        Autor autor = em.find(Autor.class, nombre);
-        return autor;
+        return em.createQuery("SELECT a FROM Autor a WHERE a.nombre = :nombre", Autor.class)
+                .setParameter("nombre", nombre)
+                .getResultList();
     }
 
     public void actualizarAutor (Autor autor) {
